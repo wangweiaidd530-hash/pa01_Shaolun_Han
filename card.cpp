@@ -2,6 +2,7 @@
 // Author: Shaolun Han
 // AI Usage: static, which is better since we don't want the user to access it elsewhere.
 // Implementation of the classes defined in card.h
+#include "card.h"
 Card::Card() {
     suit = 'c';
     value = '2';
