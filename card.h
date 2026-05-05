@@ -1,8 +1,19 @@
 // card.h
-// Author: Your name
+// Author: Shaolun Han
 // All class declarations related to defining a single card go here
 
 #ifndef CARD_H
 #define CARD_H
-
+#include <iostream>
+#include <string>
+struct Card {
+    char suit;
+    std::string value;
+    Card();
+    Card(char su, std::string val);
+    bool operator<(const Card& that) const;
+    bool operator==(const Card& that) const;
+    bool operator>(const Card& that) const;
+};
+std::ostream& operator<<(std::ostream first, const Card& card);
 #endif
