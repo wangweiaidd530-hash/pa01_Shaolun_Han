@@ -38,19 +38,19 @@ static int cardVal(const char s, std::string v) {
 
 bool Card::operator<(const Card& that) const {
     int thisVal = cardVal(this->suit, this->value);
-    int thatVal = cardVal(that->suit, that->value);
+    int thatVal = cardVal(that.suit, that.value);
     return thisVal < thatVal;
 }
 
 bool Card::operator==(const Card& that) const {
-    return cardVal(this->suit, this->value) == cardVal(that->suit, that->value);
+    return cardVal(this->suit, this->value) == cardVal(that.suit, that.value);
 }
 
 bool Card::operator>(const Card& that) const {
     return that < *this;
 }
 
-ostream& operator<<(ostream& first, const Card& card) {
+std::ostream& operator<<(std::ostream& first, const Card& card) {
     first << card.suit << " " << card.value;
     return first;
 }

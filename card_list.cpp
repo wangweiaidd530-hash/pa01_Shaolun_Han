@@ -12,7 +12,7 @@ CardList::~CardList() {
 }
 
 void CardList::clear(Node* node) {
-    if (node == nullptr) {return};
+    if (node == nullptr) {return;}
     clear(node->left);
     clear(node->right);
     delete node;
@@ -101,7 +101,7 @@ void CardList::printInOrder(Node* n) const {
         return;
     }
     printInOrder(n->left);
-    cout << n->data << endl;
+    std::cout << n->data << std::endl;
     printInOrder(n->right);
 }
 
@@ -134,8 +134,7 @@ CardList::Node* CardList::getPredecessorNode(Node* n) const {
     }
     return parent;
 }
-
-bool CardList::removeCard(Card& c){
+bool CardList::removeCard(const Card& c) {
     Node* node = getNodeFor(c, root);
     if (node == nullptr) return false;
     if (!node->left && !node->right) {
@@ -170,7 +169,7 @@ bool CardList::removeCard(Card& c){
         while (succNode->left) {
             succNode = succNode->left;
         }
-        node->info = succNode->info;
+        node->data = succNode->data;
         Node* succChild = succNode->right;
 
         if (succNode->parent->left == succNode) {
