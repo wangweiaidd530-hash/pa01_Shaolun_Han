@@ -2,6 +2,7 @@
 // Author: Shaolun Han
 // AI Usage: static, which is better since we don't want the user to access it elsewhere.
 // Implementation of the classes defined in card.h
+#include <iostream>
 #include "card.h"
 Card::Card() {
     suit = 'c';
@@ -32,6 +33,7 @@ static int cardVal(const char s, std::string v) {
     if (v == "j") num += 11;
     if (v == "q") num += 12;
     if (v == "k") num += 13;
+    return num;
 }
 
 bool Card::operator<(const Card& that) const {

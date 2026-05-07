@@ -10,7 +10,7 @@ struct Card {
     char suit;
     std::string value;
     Card();
-    Card(char su, std::string val);
+    Card(char s, std::string v);
     char getSuit() const;
     std::string getValue() const;
     bool operator<(const Card& that) const;

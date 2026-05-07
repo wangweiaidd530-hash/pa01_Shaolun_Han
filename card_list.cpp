@@ -1,5 +1,6 @@
 // card_list.cpp
 // Author: Shaolun Han
+// Actually, this is very similar to the BST ones, I just copy most of it, find useful functions and copied, delete useless helpers. That's the case.
 // Implementation of the classes defined in card_list.h
 #include "card_list.h"
 CardList::CardList() {
