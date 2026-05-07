@@ -8,6 +8,15 @@
 #include <string>
 #include "card.h"
 class CardList {
+private:
+    struct Node {
+        Card data;
+        Node* left;
+        Node* right;
+        Node* parent;
+        Node(const Card& c)
+            : data(c), left(nullptr), right(nullptr), parent(nullptr) {}
+    };
 public:
     CardList();
     ~CardList();
@@ -15,29 +24,19 @@ public:
     bool removeCard(const Card& c);
     bool containsCard(const Card& c) const;
     void printInOrder() const;
-    using Node = struct Node; //ChatGPT Debugging
     class Iterator {
     public:
-	Iterator(CardList::Node* p = nullptr);
+        Iterator(Node* p = nullptr);
         Card& operator*() const;
-        Iterator& operator++();   
-        Iterator& operator--(); 
+        Iterator& operator++();
+        Iterator& operator--();
         bool operator!=(const Iterator& other) const;
     private:
-	Node* curr;
+        Node* curr;
     };
     Iterator begin() const;
     Iterator end() const;
 private:
-    struct Node {
-        Card data;
-        Node* left;
-        Node* right;
-        Node* parent;
-
-        Node(const Card& c)
-            : data(c), left(nullptr), right(nullptr), parent(nullptr) {}
-    };
     Node* root;
     Node* getNodeFor(const Card& c, Node* n) const;
     void clear(Node* n);

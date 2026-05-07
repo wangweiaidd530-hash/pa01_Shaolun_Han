@@ -6,7 +6,7 @@
 #include "card.h"
 Card::Card() {
     suit = 'c';
-    value = '2';
+    value = "2";
 }
 
 Card::Card(char su, std::string val) {
