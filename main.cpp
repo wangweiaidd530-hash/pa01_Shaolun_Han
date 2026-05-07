@@ -21,20 +21,20 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    CardBST aliceCards;
-    CardBST bobCards;
+    CardList aliceCards;
+    CardList bobCards;
 
     while (getline(cardFile1, line) && (line.length() >= 3)) {
         char suit = line[0];
         string value = line.substr(2);
-        aliceCards.insert(Card(suit, value));
+        aliceCards.insertCard(Card(suit, value));
     }
     cardFile1.close();
 
     while (getline(cardFile2, line) && (line.length() >= 3)) {
         char suit = line[0];
         string value = line.substr(2);
-        bobCards.insert(Card(suit, value));
+        bobCards.insertCard(Card(suit, value));
     }
     cardFile2.close();
 

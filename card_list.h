@@ -15,7 +15,17 @@ public:
     bool removeCard(const Card& c);
     bool containsCard(const Card& c) const;
     void printInOrder() const;
-    class Iterator;
+    using Node = struct Node; //ChatGPT Debugging
+    class Iterator {
+    public:
+	Iterator(CardList::Node* p = nullptr);
+        Card& operator*() const;
+        Iterator& operator++();   
+        Iterator& operator--(); 
+        bool operator!=(const Iterator& other) const;
+    private:
+	Node* curr;
+    };
     Iterator begin() const;
     Iterator end() const;
 private:
@@ -39,4 +49,5 @@ private:
     Node* getMin(Node* n) const;
     Node* getMax(Node* n) const;
 };
+void playGame(CardList& alice, CardList& bob);
 #endif
