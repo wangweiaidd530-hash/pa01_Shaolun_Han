@@ -11,9 +11,11 @@ struct Card {
     std::string value;
     Card();
     Card(char su, std::string val);
+    char getSuit() const;
+    std::string getValue() const;
     bool operator<(const Card& that) const;
     bool operator==(const Card& that) const;
     bool operator>(const Card& that) const;
 };
-std::ostream& operator<<(std::ostream first, const Card& card);
+std::ostream& operator<<(std::ostream& first, const Card& card);
 #endif

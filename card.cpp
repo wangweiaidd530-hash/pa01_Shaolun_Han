@@ -13,7 +13,7 @@ Card::Card(char su, std::string val) {
     value = val;
 }
 
-static int cardVal(const char su, std::string val) {
+static int cardVal(const char s, std::string v) {
     int num = 0;
     if (s == 'c') num += 100;
     if (s == 'd') num += 200;
@@ -51,4 +51,12 @@ bool Card::operator>(const Card& that) const {
 ostream& operator<<(ostream& first, const Card& card) {
     first << card.suit << " " << card.value;
     return first;
+}
+
+char Card::getSuit() const {
+    return suit;
+}
+
+std::string Card::getValue() const {
+    return value;
 }
