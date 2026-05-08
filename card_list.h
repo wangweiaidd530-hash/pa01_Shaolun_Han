@@ -30,12 +30,15 @@ public:
         Card& operator*() const;
         Iterator& operator++();
         Iterator& operator--();
+	bool operator==(const Iterator& other) const;
         bool operator!=(const Iterator& other) const;
     private:
         Node* curr;
     };
     Iterator begin() const;
     Iterator end() const;
+    Iterator rbegin() const;
+    Iterator rend() const;
 private:
     Node* root;
     Node* getNodeFor(const Card& c, Node* n) const;

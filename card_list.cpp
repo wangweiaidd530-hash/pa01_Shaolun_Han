@@ -185,3 +185,107 @@ bool CardList::removeCard(const Card& c) {
     }
     return true;
 }
+
+CardList::Iterator::Iterator(Node* p) : curr(p) {}
+Card& CardList::Iterator::operator*() const {
+    return curr->data;
+}
+CardList::Iterator& CardList::Iterator::operator++() {
+    if (curr) {
+        if (curr->right) {
+            curr = curr->right;
+            while (curr->left) curr = curr->left;
+        }
+       	else {
+            Node* p = curr->parent;
+            while (p && curr == p->right) {
+                curr = p;
+                p = p->parent;
+            }
+            curr = p;
+        }
+    }
+    return *this;
+}
+CardList::Iterator& CardList::Iterator::operator--() {
+    if (curr) {
+        if (curr->left) {
+            curr = curr->left;
+            while (curr->right) curr = curr->right;
+        } 
+	else {
+            Node* p = curr->parent;
+            while (p && curr == p->left) {
+                curr = p;
+                p = p->parent;
+            }
+            curr = p;
+        }
+    }
+    return *this;
+}
+
+bool CardList::Iterator::operator==(const Iterator& other) const {
+    return curr == other.curr;
+}
+
+bool CardList::Iterator::operator!=(const Iterator& other) const {
+    return curr != other.curr;
+}
+
+CardList::Iterator CardList::begin() const {
+    return Iterator(getMin(root));
+}
+
+CardList::Iterator CardList::end() const {
+    return Iterator(nullptr);
+}
+
+CardList::Iterator CardList::rbegin() const {
+    return Iterator(getMax(root));
+}
+
+CardList::Iterator CardList::rend() const {
+    return Iterator(nullptr);
+}
+void playGame(CardList& alice, CardList& bob) {
+    bool cardFound = true;
+    while (cardFound) {
+        cardFound = false; 
+        for (auto itA = alice.begin(); itA != alice.end(); ++itA) {
+            Card currentCard = *itA;
+            if (bob.containsCard(currentCard)) {
+                std::cout << "Alice picked matching card " << currentCard << std::endl;
+                
+                alice.removeCard(currentCard);
+                bob.removeCard(currentCard);
+                
+                cardFound = true; 
+                break; 
+            }
+        }
+        if (!cardFound) break;
+        bool bobFound = false;
+        for (auto itB = bob.rbegin(); itB != bob.rend(); --itB) {
+            Card currentCard = *itB;
+            if (alice.containsCard(currentCard)) {
+                std::cout << "Bob picked matching card " << currentCard << std::endl;
+                alice.removeCard(currentCard);
+                bob.removeCard(currentCard);
+                bobFound = true; 
+                break; 
+            }
+        }
+        if (!bobFound) {
+            cardFound = false; 
+        } else {
+            cardFound = true; 
+        }
+    }
+    std::cout << std::endl;
+    std::cout << "Alice's cards:" << std::endl;
+    alice.printInOrder();
+    std::cout << std::endl;
+    std::cout << "Bob's cards:" << std::endl;
+    bob.printInOrder();
+}
