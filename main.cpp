@@ -40,15 +40,5 @@ int main(int argc, char** argv) {
 
     playGame(aliceCards, bobCards);
 
-    cout << endl << "Alice's cards:" << endl;
-    for (auto it = aliceCards.begin(); it != aliceCards.end(); ++it) {
-        cout << (*it).getSuit() << " " << (*it).getValue() << endl;
-    }
-
-    cout << endl << "Bob's cards:" << endl;
-    for (auto it = bobCards.begin(); it != bobCards.end(); ++it) {
-        cout << (*it).getSuit() << " " << (*it).getValue() << endl;
-    }
-
     return 0;
 }
